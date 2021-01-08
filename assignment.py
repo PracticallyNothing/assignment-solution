@@ -162,7 +162,7 @@ def solve(m, n, inLayer):
                 outLayer[y+1][x] = nextBrickNum
             else:
                 print("No solution at x: %d, y: %d" % (x, y))
-                return outLayer
+                return -1
 
             if debugMode:
                 print("Step %d: " % (nextBrickNum))
