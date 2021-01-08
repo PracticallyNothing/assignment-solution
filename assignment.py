@@ -31,7 +31,7 @@ def validate(m, n, inLayer):
 
             # Number of tiles that are part of this brick.
             # Must be 2 for the input layer to be valid.
-            brickSize = 1
+            brickSize = 0
 
             # Initialize the first element of the queue.
             queue.append([x, y])
@@ -43,22 +43,22 @@ def validate(m, n, inLayer):
                     queue.pop(0)
                     continue
 
+                brickSize += 1
+
                 # Mark the current tile as checked
                 checked[yy][xx] = True
 
                 # If we aren't at the right edge and the tile to our
                 # right has the same brick number as our current tile,
-                # add it to the count and queue it to check its neighbours.
+                # queue it to check its neighbours.
                 if xx < w-1 and inLayer[yy][xx] == inLayer[yy][xx+1]:
                     queue.append([xx+1, yy])
-                    brickSize += 1
 
                 # If we aren't at the bottom and the tile below us
                 # has the same brick number as our current tile,
-                # add it to the count and queue it to check its neighbours.
+                # queue it to check its neighbours.
                 if yy < h-1 and inLayer[yy][xx] == inLayer[yy+1][xx]:
                     queue.append([xx, yy+1])
-                    brickSize += 1
 
                 # We're done with this tile, so discard it.
                 queue.pop(0)
